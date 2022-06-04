@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+
+{% block head %}
+<title>Book_Market</title>
+
+{% endblock %}
+
+{% block body %}
+<div class="row" style="margin-top:20px; margin-left:20px">
+   <div class="col-8">
+       <h2>Наявні книжки у архіві</h2>
+       <p></p>
+
+       <br>
+       <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <!-- Your Columns HERE -->
+                <th scope="col">ID</th>
+                <th scope="col">Назва</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">Ціна</th>
+                <th scope="col">Короткий опис</th>
+                <th scope="col">Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Your rows inside the table HERE: -->
+            {% for item in items %}
+            {% include 'includes/item_modal.html' %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.ISBN }}</td>
+                    <td>{{ item.price }}$</td>
+                    <td>{{ item.description }}</td>
+                    <td>
+                        <button class="btn btn-outline btn-success" data-toggle="modal" data-target="#Modal-PurchaseConfirm-{{ item.id }}">Отримати</button>
+                        <a href="/delete/{{item.id}}"><button class="btn btn-outline btn-info">  Видалити </button> </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+   </div>
+
+   <div class="col-4">
+        <h2>Мої книжки</h2>
+        <p>Натисніть на кномку, щоб повернути книжку</p>
+        <br>
+        <div class="row">
+           {% for owned_item in owned_items %}
+           {% include 'includes/owned_items_modals.html' %}
+             <div class="col-md-6">
+                 <div style="margin-bottom: 5px" class="card text-center bg-dark">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ owned_item.name }}</h5>
+                          <button type="button" class="btn btn-outline-danger" style="margin-bottom: 5px"
+                                  data-toggle="modal" data-target="#Modal-SellingConfirm-{{ owned_item.id }}">
+                              Повернути
+                          </button>
+                          <p class="card-text"><strong>
+                              Ціна {{ owned_item.price }}$
+                          </strong></p>
+                      </div>
+                  </div>
+             </div>
+           {% endfor %}
+        </div>
+   </div>
+</div>
+{% endblock %}

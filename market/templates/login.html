@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+{% block head %}
+<title>Login</title>
+
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+      <div class="col">
+
+      </div>
+
+      <div class="col-6" >
+          <body class="text-center">
+                <div class="container">
+                    <form method="POST" class="form-signin" style="color:white">
+            {{ form.hidden_tag() }}
+                        <br>
+
+            <h1 class="h3 mb-3 font-weight-normal">
+                Увійти в обліковий запис
+            </h1>
+
+            {{ form.username.label() }}
+            {{ form.username(class="form-control", placeholder="User Name") }}
+
+            {{ form.password.label() }}
+            {{ form.password(class="form-control", placeholder="Password") }}
+
+            <br>
+
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+
+        </form>
+                    <br>
+                    <div class="checkbox mb-3">
+                        <h6>Не маєте облікового запису?</h6>
+                        <a class="btn btn-sm btn-secondary" href="{{ url_for('register_page') }}">Зареєструватися</a>
+                    </div>
+                </div>
+
+          </body>
+
+      </div>
+      <div class="col">
+
+       </div>
+  </div>
+</div>
+
+{% endblock %}

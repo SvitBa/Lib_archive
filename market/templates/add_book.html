@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Add Item
+{% endblock %}
+
+
+{% block body %}
+
+<body class="text-center">
+    <div class="container">
+        <h1 class="h3 mb-3 font-weight-normal">
+                Додати книгу
+            </h1>
+
+        <form method="POST" class="form-group row" style="color:white">
+            {{ form.hidden_tag() }}
+            <br>
+            {{ form.name.label() }}
+            {{ form.name(class="form-control", placeholder="Назва книги") }}
+
+            {{ form.ISBN.label() }}
+            {{ form.ISBN(class="form-control", placeholder="ISBN") }}
+
+            {{ form.price.label() }}
+            {{ form.price(class="form-control", placeholder="В гривнах") }}
+
+            {{ form.description.label() }}
+            {{ form.description(class="form-control", placeholder="Короткий опис") }}
+
+            <br>
+
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+
+        </form>
+    </div>
+</body>
+{% endblock %}
